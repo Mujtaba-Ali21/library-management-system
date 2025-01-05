@@ -1,0 +1,80 @@
+body {
+  background-color: #c47f4a77;
+}
+.library {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #c2804e;
+  margin: 20px;
+  border-radius: 10px;
+  min-height: 100vh;
+  overflow: auto;
+}
+.shelf {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  padding: 30px;
+  height: 150px;
+}
+.book {
+  width: 100px;
+  height: 150px;
+  background: linear-gradient(45deg, black,#f8f8f861);
+  background: linear-gradient(45deg, black,#3c2f2fda);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 10px;
+  color: white;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+.book::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 10px;
+  height: 100%;
+  background: #3c2f2fda;
+  border-radius: 5px;
+}
+.book .title {
+  font-size: 16px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.book .author {
+  text-align: end;
+  font-weight: 500;
+  font-size: 14px;
+font-style: italic;
+}
+.book.borrowed {
+  background: linear-gradient(45deg, black,#c9c5c577);
+}
+.book .borrowed-date {
+  font-size: 12px;
+  color: whitesmoke;
+  font-style: oblique;
+}
+.divider {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  padding: 15px;
+  margin: 0px 30px 0px 30px;
+  background: #c2804e;
+  height: 100%;
+  border: none;
+  box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.4),
+    10px 0px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+}
