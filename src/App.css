@@ -1,13 +1,64 @@
 body {
   background-color: #c47f4a77;
 }
+.searchbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 10px 0 10px;
+  width: 99%;
+}
+
+.searchbox-container input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  color: white;
+  background-color: #4e3a33;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.searchbox-container input::placeholder {
+  color: white;
+}
+
+.searchbox-container input:focus {
+  outline: none;
+}
+
+.searchbox-container a {
+  text-decoration: none;
+  padding: 10.5px 20px;
+  font-size: 16px;
+  color: white;
+  border-left: 1px solid #c2804e;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: #4e3a33;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .searchbox-container {
+    flex-direction: column;
+  }
+
+  .searchbox-container a {
+    text-align: center;
+  }
+}
+
 .library {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   background: #c2804e;
-  margin: 20px;
-  border-radius: 10px;
+  margin: 0 20px 0 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   min-height: 100vh;
   overflow: auto;
 }
@@ -21,8 +72,8 @@ body {
 .book {
   width: 100px;
   height: 150px;
-  background: linear-gradient(45deg, black,#f8f8f861);
-  background: linear-gradient(45deg, black,#3c2f2fda);
+  background: linear-gradient(45deg, black, #f8f8f861);
+  background: linear-gradient(45deg, black, #3c2f2fda);
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -54,10 +105,10 @@ body {
   text-align: end;
   font-weight: 500;
   font-size: 14px;
-font-style: italic;
+  font-style: italic;
 }
 .book.borrowed {
-  background: linear-gradient(45deg, black,#c9c5c577);
+  background: linear-gradient(45deg, black, #c9c5c577);
 }
 .book .borrowed-date {
   font-size: 12px;

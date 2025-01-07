@@ -5,6 +5,7 @@ import db from "./firebase/firebaseConfig";
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const booksCollection = collection(db, "books");
@@ -19,24 +20,58 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  return (
-    <div className="library">
-      <div className="shelf">
-        {books.map((book, index) => (
-          <React.Fragment key={book.id}>
-            <div className={`book ${book.borrowed ? "borrowed" : ""}`}>
-              <div className="title">{book.name}</div>
-              {book.borrowed && (
-                <div className="borrowed-date">Borrowed: {book.borrowedOn}</div>
-              )}
-              <div className="author">~ {book.author}</div>
-            </div>
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
+  };
 
-            {index < books.length - 1 && <div className="divider"></div>}
-          </React.Fragment>
-        ))}
+  const filteredBooks = books.filter((book) => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      book.name.toLowerCase().includes(searchLower) ||
+      book.author.toLowerCase().includes(searchLower)
+    );
+  });
+
+  return (
+    <>
+      <div className="searchbox-container">
+        <input
+          type="text"
+          placeholder="Search books..."
+          className="search"
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+        <a
+          href="https://library-management-system-dashboard.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="add-books"
+        >
+          Add Books
+        </a>
       </div>
-    </div>
+      <div className="library">
+        <div className="shelf">
+          {filteredBooks.map((book, index) => (
+            <React.Fragment key={book.id}>
+              <div className={`book ${book.borrowed ? "borrowed" : ""}`}>
+                <div className="title">{book.name}</div>
+                {book.borrowed && (
+                  <div className="borrowed-date">
+                    Borrowed: {book.borrowedOn}
+                  </div>
+                )}
+                <div className="author">~ {book.author}</div>
+              </div>
+              {index < filteredBooks.length - 1 && (
+                <div className="divider"></div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
